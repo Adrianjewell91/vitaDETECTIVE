@@ -45,7 +45,7 @@ app.get('/', async (req, res) => {
   // res.render('index', {
   //   authorize_url: authorizeUrl,
     // });
-  res.json(reports)
+  res.json(reports);
 });
 
 app.get('/callback', async (req, res) => {

@@ -2,6 +2,9 @@
   "name": "GENOME-LINK-Example-Node-Express-App",
   "version": "0.0.1",
   "private": true,
+  "engines": {
+    "node": ">= 7.6.0"
+  },
   "dependencies": {
     "ejs": "latest",
     "express": "latest",
