@@ -40,6 +40,8 @@ app.get('/', async (req, res) => {
       })
     }));
   }
+
+
   // Fetching a protected resource using an OAuth2 token if exists.
   // let reports = [];
   // res.render('index', {
