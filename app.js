@@ -30,6 +30,7 @@ app.get('/', async (req, res) => {
   const authorizeUrl = genomeLink.OAuth.authorizeUrl({ scope: vitamin_list.join(' '),
                                                        clientId: GENOMELINK_CLIENT_ID,
                                                         callbackUrl: GENOMELINK_CALLBACK_URL });
+
   if (req.session.oauthToken) {
     const scopes = vitamin_list;
     reports = await Promise.all(scopes.map( async (name) => {
@@ -40,6 +41,8 @@ app.get('/', async (req, res) => {
       })
     }));
   }
+
+
 
 
   // Fetching a protected resource using an OAuth2 token if exists.
@@ -57,8 +60,6 @@ app.get('/callback', async (req, res) => {
 
 
   req.session.oauthToken = await genomeLink.OAuth.token({ requestUrl: req.url });
-
-
   //
 
   // At this point you can fetch protected resources but lets save
