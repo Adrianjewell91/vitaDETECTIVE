@@ -57,7 +57,7 @@ app.get('/callback', async (req, res) => {
   req.session.oauthToken = await genomeLink.OAuth.token({ requestUrl: req.url });
 
 
-//
+  //
 
   // At this point you can fetch protected resources but lets save
   // the token and show how this is done from a persisted token in index page.
