@@ -6,7 +6,7 @@ const vitamin_list = require('./vitamin_qualities.js');
 
 const GENOMELINK_CLIENT_ID='t0pRdHSsViMvhmFKGejrph0jvtyQFx760cz32qKB';
 const GENOMELINK_CLIENT_SECRET='gi27X7FmYpqv0dkb5VJTsuBoNpOG7uBjDFxvdLg1uE3Aqj2UE9vKtWZI24bcJIdfrjFYRRu6AM5qV6OuWZ3HYSg33l08ONAPD6TnH2IxMoiA3IEm35Q2DdyMoxdsDlos';
-const GENOMELINK_CALLBACK_URL='http://127.0.0.1:3000/callback';
+const GENOMELINK_CALLBACK_URL='https://vitadetective-api.herokuapp.com/callback';
 
 const app = express();
 app.set('view engine', 'ejs');
