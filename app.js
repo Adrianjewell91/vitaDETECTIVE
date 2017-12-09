@@ -24,26 +24,12 @@ app.use(session({
 }));
 
 app.get('/', async (req, res) => {
+
+  let reports = [];
+
   const authorizeUrl = genomeLink.OAuth.authorizeUrl({ scope: vitamin_list.join(' '),
                                                        clientId: GENOMELINK_CLIENT_ID,
                                                         callbackUrl: GENOMELINK_CALLBACK_URL });
-
-  // Fetching a protected resource using an OAuth2 token if exists.
-  // let reports = [];
-  res.render('index', {
-    authorize_url: authorizeUrl,
-  });
-
-});
-
-app.get('/callback', async (req, res) => {
-  // The user has been redirected back from the provider to your registered
-  // callback URL. With this redirection comes an authorization code included
-  // in the request URL. We will use that to obtain an access token.
-  let reports = [];
-
-  req.session.oauthToken = await genomeLink.OAuth.token({ requestUrl: req.url });
-
   if (req.session.oauthToken) {
     const scopes = vitamin_list;
     reports = await Promise.all(scopes.map( async (name) => {
@@ -54,15 +40,32 @@ app.get('/callback', async (req, res) => {
       })
     }));
   }
+  // Fetching a protected resource using an OAuth2 token if exists.
+  // let reports = [];
+  // res.render('index', {
+  //   authorize_url: authorizeUrl,
+    // });
+  res.json(reports)
+});
+
+app.get('/callback', async (req, res) => {
+  // The user has been redirected back from the provider to your registered
+  // callback URL. With this redirection comes an authorization code included
+  // in the request URL. We will use that to obtain an access token.
+
+
+  req.session.oauthToken = await genomeLink.OAuth.token({ requestUrl: req.url });
+
+
 //
 
   // At this point you can fetch protected resources but lets save
   // the token and show how this is done from a persisted token in index page.
-  // res.redirect('/');
+  res.redirect('/');
   // const present_report = reports.map((el) => ({text: el.data.summary.text,
   //                                             score: `${el.data.summary.score}/4`}));
 
-  res.json(reports);
+  // res.json(reports);
 });
 
 // Run local server on port 3000.
