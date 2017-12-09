@@ -39,7 +39,7 @@ app.get('/', async (req, res) => {
         population: 'european',
         token: req.session.oauthToken
       })
-    }));
+    });
   }
 
 
@@ -48,7 +48,7 @@ app.get('/', async (req, res) => {
   // res.render('index', {
   //   authorize_url: authorizeUrl,
     // });
-  res.json(reports);
+  setTimeOut((res) => res.json(reports), 3000);
 });
 
 app.get('/callback', async (req, res) => {
