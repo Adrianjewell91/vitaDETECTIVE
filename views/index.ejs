@@ -3,8 +3,11 @@
   <head>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <link href="https://fonts.googleapis.com/css?family=Montserrat|Roboto" rel="stylesheet">
+    <style media="screen">
+
+    </style>
   </head>
-  <body style="font-family: 'Montserrat', sans-serif;">
+  <body style="font-family: 'Montserrat', sans-serif; background: #EDEDED;">
     <div class="container"
     style="width:100%;
       padding:0px">
@@ -12,20 +15,21 @@
       </div> -->
       <div style="
         background:url('https://s3-us-west-1.amazonaws.com/vita-detective/medications-cure-tablets-pharmacy-56612.jpeg') no-repeat center center;
-        background-size:100% auto;
+        background-size:cover;
         height:80%;
+        padding-bottom: 50%;
       ">
-
+      <img
+       src="https://s3-us-west-1.amazonaws.com/vita-detective/pill-identifier-pill-finder.png"
+       class="img-fluid float-right center-block" style="width:40%; padding-top:5%; " alt="Responsive image"/>
       <p class="text-center"
       style="
         margin-left:5%;
-        margin-bottom:2.6%;
+        margin-bottom:6%;
         padding-top:5%;
         font-weight:bold;
-        font-size:6em;">
+        font-size:8vw;">
       VITA-DETECTIVE
-      <img src="https://s3-us-west-1.amazonaws.com/vita-detective/pill-identifier-pill-finder.png"
-       class="img-fluid float-right" style="width:10%;" alt="Responsive image"/>
       </p>
 
             <% if (authorize_url) { %>
@@ -33,14 +37,14 @@
               style="
                 background-color:#355057;
                 color:#fff;
-                font-size: 1.5em;
+                font-size: 4vw;
                 margin-top:2%;
                 margin-bottom:18.5%;
                 width:30%;
                 border-color:rgba(0,0,0,0.15);
                 border-bottom-width:2px;">
 
-                Get Recommendations
+                Connect
             </a>
             <% } %>
     </div>
