@@ -32,7 +32,7 @@ app.use(session({
 app.get('/', async (req, res) => {
   // res.sendFile(path.join(__dirname, '/frontend/index.html'));
   // console.log(VARIABLES.GENOMELINK_CLIENT_ID);
-  const authorizeUrl = await genomeLink.OAuth.authorizeUrl({scope: vitamin_list.join(' '), clientId: t0pRdHSsViMvhmFKGejrph0jvtyQFx760cz32qKB, callbackUrl: GENOMELINK_CALLBACK_URL});
+  const authorizeUrl = await genomeLink.OAuth.authorizeUrl({scope: vitamin_list.join(' '), clientId: VARIABLES.GENOMELINK_CLIENT_ID, callbackUrl: VARIABLES.GENOMELINK_CALLBACK_URL});
 
   res.render('index', {
     authorize_url: authorizeUrl,
