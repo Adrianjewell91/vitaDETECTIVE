@@ -25672,6 +25672,8 @@ var _react = __webpack_require__(0);
 
 var _react2 = _interopRequireDefault(_react);
 
+var _reactRouterDom = __webpack_require__(42);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -25690,62 +25692,66 @@ var Reports = function (_React$Component) {
   }
 
   _createClass(Reports, [{
-    key: "componentWillMount",
+    key: 'componentWillMount',
     value: function componentWillMount() {
       console.log(this.props);
       this.props.requestReports();
     }
   }, {
-    key: "render",
+    key: 'render',
     value: function render() {
 
       var reports = this.props.reports;
 
       return _react2.default.createElement(
-        "div",
+        'div',
         null,
         _react2.default.createElement(
-          "h1",
+          'h1',
           null,
-          "Your Report"
+          'Your Report'
         ),
         _react2.default.createElement(
-          "table",
-          { className: "table" },
+          'table',
+          { className: 'table' },
           _react2.default.createElement(
-            "thead",
+            'thead',
             null,
             _react2.default.createElement(
-              "tr",
+              'tr',
               null,
               _react2.default.createElement(
-                "th",
+                'th',
                 null,
-                "Vitamin"
+                'Vitamin'
               ),
               _react2.default.createElement(
-                "th",
+                'th',
                 null,
-                "Recommended?"
+                'Recommended?'
               )
             )
           ),
           _react2.default.createElement(
-            "tbody",
+            'tbody',
             null,
             reports.map(function (el) {
               return _react2.default.createElement(
-                "tr",
+                'tr',
                 null,
                 _react2.default.createElement(
-                  "th",
-                  { scope: "row", key: el.phenotype },
+                  'th',
+                  { scope: 'row', key: el.phenotype },
                   el.phenotype
                 ),
                 _react2.default.createElement(
-                  "td",
-                  { key: "0" + el.phenotype },
-                  el.score < 3 ? "Browse Supplements" : "Not recommended"
+                  'td',
+                  { key: '0' + el.phenotype },
+                  el.score < 2 ? _react2.default.createElement(
+                    _reactRouterDom.Link,
+                    { to: '/' + el.phenotype },
+                    'Browse Supplements'
+                  ) : 'Great News!, You May Not Need Supplements'
                 )
               );
             })
@@ -25986,7 +25992,6 @@ var getProducts = exports.getProducts = function getProducts(vitamin) {
 };
 
 // action-creators
-
 var receiveProducts = exports.receiveProducts = function receiveProducts(products) {
   return {
     type: RECEIVE_PRODUCTS,
@@ -25995,7 +26000,6 @@ var receiveProducts = exports.receiveProducts = function receiveProducts(product
 };
 
 //thunks
-
 var requestProducts = exports.requestProducts = function requestProducts(vitamin) {
   return function (dispatch) {
     return getProducts(vitamin).then(function (products) {
@@ -26042,7 +26046,8 @@ var ProductIndex = function (_React$Component) {
     _createClass(ProductIndex, [{
         key: 'componentDidMount',
         value: function componentDidMount() {
-            var vitamin = 'Vitamin A';
+            console.log(this.props.match.url);
+            var vitamin = this.props.match.url.slice(1);
             this.props.requestProducts(vitamin).then(function (res) {
                 return console.log(res);
             });
