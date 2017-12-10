@@ -7,9 +7,6 @@ const aws = require('aws-lib');
 const bodyParser = require('body-parser');
 
 let reports = [];
-// const GENOMELINK_CLIENT_ID='t0pRdHSsViMvhmFKGejrph0jvtyQFx760cz32qKB';
-// const GENOMELINK_CLIENT_SECRET='gi27X7FmYpqv0dkb5VJTsuBoNpOG7uBjDFxvdLg1uE3Aqj2UE9vKtWZI24bcJIdfrjFYRRu6AM5qV6OuWZ3HYSg33l08ONAPD6TnH2IxMoiA3IEm35Q2DdyMoxdsDlos';
-// const GENOMELINK_CALLBACK_URL='https://vitadetective-api.herokuapp.com/callback';
 
 const app = express();
 
@@ -32,9 +29,7 @@ app.use(session({
 
 app.get('/', async (req, res) => {
   // res.sendFile(path.join(__dirname, '/frontend/index.html'));
-  const GENOMELINK_CLIENT_ID='t0pRdHSsViMvhmFKGejrph0jvtyQFx760cz32qKB';
-  const GENOMELINK_CLIENT_SECRET='gi27X7FmYpqv0dkb5VJTsuBoNpOG7uBjDFxvdLg1uE3Aqj2UE9vKtWZI24bcJIdfrjFYRRu6AM5qV6OuWZ3HYSg33l08ONAPD6TnH2IxMoiA3IEm35Q2DdyMoxdsDlos';
-  const GENOMELINK_CALLBACK_URL='http://127.0.0.1:3000/callback';
+
 
   const authorizeUrl = await genomeLink.OAuth.authorizeUrl({scope: vitamin_list.join(' '), clientId: GENOMELINK_CLIENT_ID, callbackUrl: GENOMELINK_CALLBACK_URL});
 
@@ -83,7 +78,6 @@ app.get('/report', (req,res) => {
 
 app.get('/aws', async (req,res) => {
 
-  let prodAdv = aws.createProdAdvClient('AKIAIV5LBVLYWEEHDY6Q', 'AHU68vB//Ask3AgqyWWbPoagus5oBvFFTciRopnz', 'vitadetective-20');
 
   let options = { SearchIndex: "HealthPersonalCare", Keywords: "vitamin a" }
 
