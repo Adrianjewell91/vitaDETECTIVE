@@ -4,6 +4,8 @@ import ReactDOM from 'react-dom';
 import Root from './components/root';
 import configureStore from './store/store';
 
+import {getReports, receiveReports} from './actions/report_actions';
+
 document.addEventListener('DOMContentLoaded', () => {
   let store;
   if (window.currentUser) {
@@ -15,6 +17,11 @@ document.addEventListener('DOMContentLoaded', () => {
   }
   const root = document.getElementById('root');
   // console.log('root')
+
+  window.store = store;
+  window.getReports = getReports;
+  window.receiveReports = receiveReports;
+  
   ReactDOM.render(<Root store={store} />, root);
 });
 
@@ -61,5 +68,3 @@ document.addEventListener('DOMContentLoaded', () => {
 //   });
 
 // });
-
-

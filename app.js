@@ -4,10 +4,12 @@ const genomeLink = require('genomelink-node');
 const path = require('path')
 const vitamin_list = require('./vitamin_qualities.js');
 const aws = require('aws-lib');
+<<<<<<< HEAD
+=======
+const bodyParser = require('body-parser');
+
+>>>>>>> 4739eada5aa911d92fa8545d123de354f49ccfd6
 let reports = [];
-// const GENOMELINK_CLIENT_ID='t0pRdHSsViMvhmFKGejrph0jvtyQFx760cz32qKB';
-// const GENOMELINK_CLIENT_SECRET='gi27X7FmYpqv0dkb5VJTsuBoNpOG7uBjDFxvdLg1uE3Aqj2UE9vKtWZI24bcJIdfrjFYRRu6AM5qV6OuWZ3HYSg33l08ONAPD6TnH2IxMoiA3IEm35Q2DdyMoxdsDlos';
-// const GENOMELINK_CALLBACK_URL='https://vitadetective-api.herokuapp.com/callback';
 
 const app = express();
 
@@ -16,6 +18,8 @@ app.set('views', __dirname + '/views');
 
 // Use the session middleware
 app.use(express.static('frontend'));
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: true }));
 
 app.use(session({
   secret: 'YOURSECRET',
@@ -28,9 +32,7 @@ app.use(session({
 
 app.get('/', async (req, res) => {
   // res.sendFile(path.join(__dirname, '/frontend/index.html'));
-  const GENOMELINK_CLIENT_ID='t0pRdHSsViMvhmFKGejrph0jvtyQFx760cz32qKB';
-  const GENOMELINK_CLIENT_SECRET='gi27X7FmYpqv0dkb5VJTsuBoNpOG7uBjDFxvdLg1uE3Aqj2UE9vKtWZI24bcJIdfrjFYRRu6AM5qV6OuWZ3HYSg33l08ONAPD6TnH2IxMoiA3IEm35Q2DdyMoxdsDlos';
-  const GENOMELINK_CALLBACK_URL='http://127.0.0.1:3000/callback';
+
 
   const authorizeUrl = await genomeLink.OAuth.authorizeUrl({scope: vitamin_list.join(' '), clientId: GENOMELINK_CLIENT_ID, callbackUrl: GENOMELINK_CALLBACK_URL});
 
@@ -66,6 +68,7 @@ app.get('/single_page', async (req,res) => {
   }
 
   res.sendFile(path.join(__dirname, '/frontend/react_index.html'));
+
 });
 
 app.get('/report', (req,res) => {
@@ -75,18 +78,31 @@ app.get('/report', (req,res) => {
   res.json(present_reports);
 })
 
+<<<<<<< HEAD
 app.get('/aws', async (req,res) => {
   
   let prodAdv = aws.createProdAdvClient('AKIAIV5LBVLYWEEHDY6Q', 'AHU68vB//Ask3AgqyWWbPoagus5oBvFFTciRopnz', 'vitadetective-20');
   
   let options = { SearchIndex: "Books", Keywords: "Javascript" }
           
+=======
+
+app.get('/aws', async (req,res) => {
+
+  let prodAdv = aws.createProdAdvClient(
+
+  let options = { SearchIndex: "HealthPersonalCare", Keywords: req.query.query }
+
+>>>>>>> 4739eada5aa911d92fa8545d123de354f49ccfd6
   prodAdv.call("ItemSearch", options, function(err, result) {
       res.json(result);
   });
 });
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> 4739eada5aa911d92fa8545d123de354f49ccfd6
 // Run local server on port 3000.
 const port = process.env.PORT || 3000;
 const server = app.listen(port, function () {
