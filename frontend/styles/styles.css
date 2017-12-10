@@ -3,6 +3,11 @@ body {
   font-family: "Roboto", helvetica;
 }
 
+thead {
+  border-collapse: collapse;
+  border-bottom: 4px solid #9ea7af;
+}
+
 .reports-div {
   display: flex;
   flex-direction: column;
@@ -34,7 +39,7 @@ body {
 
 
 .report-table, .reports-td, .reports-th {
-    border: 1px solid #ddd;
+    /*border: 1px solid #ddd;*/
     text-align: left;
 }
 
@@ -45,4 +50,8 @@ body {
 
 .reports-th, .reports-td {
     padding: 15px;
+}
+
+a {
+  text-decoration: none;
 }
