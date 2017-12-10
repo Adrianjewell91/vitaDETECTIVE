@@ -6,7 +6,7 @@ const vitamin_list = require('./vitamin_qualities.js');
 const aws = require('aws-lib');
 const bodyParser = require('body-parser');
 
-// const VARIABLES = require('./env_variables.js');
+const VARIABLES = require('./env_variables.js');
 
 let reports = [];
 
@@ -32,7 +32,7 @@ app.use(session({
 app.get('/', async (req, res) => {
   // res.sendFile(path.join(__dirname, '/frontend/index.html'));
   // console.log(VARIABLES.GENOMELINK_CLIENT_ID);
-  const authorizeUrl = await genomeLink.OAuth.authorizeUrl({scope: vitamin_list.join(' '), clientId: VARIABLES.GENOMELINK_CLIENT_ID, callbackUrl: VARIABLES.GENOMELINK_CALLBACK_URL});
+  const authorizeUrl = await genomeLink.OAuth.authorizeUrl({scope: vitamin_list.join(' '), clientId: t0pRdHSsViMvhmFKGejrph0jvtyQFx760cz32qKB, callbackUrl: GENOMELINK_CALLBACK_URL});
 
   res.render('index', {
     authorize_url: authorizeUrl,
@@ -93,7 +93,6 @@ app.get('/report', (req,res) => {
    {"phenotype":"Magnesium","score": 1,"summary":"Slightly lower serum level"},
 
    {"phenotype":"Phosphorus","score": 3,"summary":"Slightly higher serum level"} ];
-
 
   res.json(dummyData);
 })
