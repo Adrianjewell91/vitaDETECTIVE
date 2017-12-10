@@ -6,8 +6,8 @@ class ProductIndex extends React.Component {
     }
 
     componentDidMount() {
-        const vitamin = this.props.vitamin;
-        this.props.fetchProducts(vitamin).then(res => console.log(res))
+        const vitamin = 'Vitamin A';
+        this.props.requestProducts(vitamin).then(res => console.log(res));
     }
 
     render() {
