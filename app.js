@@ -1,7 +1,7 @@
 const express = require('express');
 const session = require('express-session');
 const genomeLink = require('genomelink-node');
-
+const path = require('path')
 const vitamin_list = require('./vitamin_qualities.js');
 
 const GENOMELINK_CLIENT_ID='t0pRdHSsViMvhmFKGejrph0jvtyQFx760cz32qKB';
@@ -13,7 +13,7 @@ app.set('view engine', 'ejs');
 app.set('views', __dirname + '/views');
 
 // Use the session middleware
-
+app.use(express.static('frontend'));
 app.use(session({
   secret: 'YOURSECRET',
   resave: false,
@@ -24,12 +24,16 @@ app.use(session({
 }));
 
 app.get('/', async (req, res) => {
+  res.sendFile(path.join(__dirname, '/frontend/index.html'));
+});
 
+app.get('/callback', async (req, res) => {
+  // The user has been redirected back from the provider to your registered
+  // callback URL. With this redirection comes an authorization code included
+  // in the request URL. We will use that to obtain an access token.
   let reports = [];
 
-  const authorizeUrl = genomeLink.OAuth.authorizeUrl({ scope: vitamin_list.join(' '),
-                                                       clientId: GENOMELINK_CLIENT_ID,
-                                                        callbackUrl: GENOMELINK_CALLBACK_URL });
+  req.session.oauthToken = await genomeLink.OAuth.token({ requestUrl: req.url })
 
   if (req.session.oauthToken) {
     const scopes = vitamin_list;
@@ -42,31 +46,7 @@ app.get('/', async (req, res) => {
     }));
   }
 
-
-  // Fetching a protected resource using an OAuth2 token if exists.
-  // let reports = [];
-  // res.render('index', {
-  //   authorize_url: authorizeUrl,
-    // });
-  setTimeout((res) => res.json(reports), 3000);
-});
-
-app.get('/callback', async (req, res) => {
-  // The user has been redirected back from the provider to your registered
-  // callback URL. With this redirection comes an authorization code included
-  // in the request URL. We will use that to obtain an access token.
-
-
-  req.session.oauthToken = await genomeLink.OAuth.token({ requestUrl: req.url });
-  //
-
-  // At this point you can fetch protected resources but lets save
-  // the token and show how this is done from a persisted token in index page.
-  res.redirect('/');
-  // const present_report = reports.map((el) => ({text: el.data.summary.text,
-  //                                             score: `${el.data.summary.score}/4`}));
-
-  // res.json(reports);
+  res.json(reports);
 });
 
 // Run local server on port 3000.
