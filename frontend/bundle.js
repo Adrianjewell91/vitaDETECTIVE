@@ -25989,7 +25989,7 @@ var getProducts = exports.getProducts = function getProducts(vitamin) {
 
 var receiveProducts = exports.receiveProducts = function receiveProducts(products) {
   return {
-    type: RECIEVE_PRODUCTS,
+    type: RECEIVE_PRODUCTS,
     products: products
   };
 };
