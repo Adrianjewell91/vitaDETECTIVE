@@ -82,10 +82,8 @@ app.get('/aws', async (req,res) => {
   let options = { SearchIndex: "Books", Keywords: "Javascript" }
           
   prodAdv.call("ItemSearch", options, function(err, result) {
-      console.log(result);
+      res.json(result);
   });
-
-  res.sendFile(path.join(__dirname, '/frontend/react_index.html'));
 });
 
 

@@ -12,7 +12,7 @@ const App = () => (
     <div>
         <header>
             <div>
-                <ProductIndex/>
+                I am React
             </div>
         </header>
 
