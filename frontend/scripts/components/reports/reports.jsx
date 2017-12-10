@@ -33,7 +33,7 @@ class Reports extends React.Component {
               return (
               <tr className='tr-report-body'>
                 <th className="reports-th row" scope="row" key={el.phenotype}>{el.phenotype}</th>
-                <td className="reports-td row" scope="row" key={`0${el.phenotype}`}>{el.score < 3 ? <Link to={`/${el.phenotype}`}>Browse Supplements</Link> : `Great News! You May Not Need Supplements`}</td>
+                <td className="reports-td row" scope="row" key={`0${el.phenotype}`}>{el.score < 3 ? <Link to={`/${el.phenotype}`}>Browse Supplements</Link> : `Great news! You may not need supplements.`}</td>
               </tr> )
             })
           }

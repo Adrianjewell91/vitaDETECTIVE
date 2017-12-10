@@ -25751,7 +25751,7 @@ var Reports = function (_React$Component) {
                     _reactRouterDom.Link,
                     { to: '/' + el.phenotype },
                     'Browse Supplements'
-                  ) : 'Great News! You May Not Need Supplements'
+                  ) : 'Great news! You may not need supplements.'
                 )
               );
             })
