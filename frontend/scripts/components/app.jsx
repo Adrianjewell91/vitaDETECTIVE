@@ -14,7 +14,6 @@ const App = () => (
     <div>
         <header>
         </header>
-
         <Switch>
           <Route exact path="/" component={ReportsContainer}/>
           <Route exact path="/:vitamin" component={ProductIndexContainer}/>
