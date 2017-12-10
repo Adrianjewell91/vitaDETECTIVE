@@ -1,5 +1,6 @@
 import React from 'react';
 
+
 class Reports extends React.Component {
   constructor(props) {
     super(props);
@@ -14,6 +15,7 @@ class Reports extends React.Component {
 
     const reports = this.props.reports;
 
+
     return (
       <div>
         <h1>Your Report</h1>
@@ -21,8 +23,8 @@ class Reports extends React.Component {
         <table className="table">
         <thead>
           <tr>
-            <th>Name</th>
-            <th>Genetic insights</th>
+            <th>Vitamin</th>
+            <th>Recommended?</th>
           </tr>
         </thead>
         <tbody>
@@ -31,7 +33,7 @@ class Reports extends React.Component {
               return (
               <tr>
                 <th scope="row" key={el.phenotype}>{el.phenotype}</th>
-                <td key={`0${el.phenotype}`}>{`${el.summary} | ${el.score}/4`}</td>
+                <td key={`0${el.phenotype}`}>{el.score < 3 ? `Browse Supplements` : `Not recommended`}</td>
               </tr> )
             })
           }

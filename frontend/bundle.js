@@ -25713,12 +25713,12 @@ var Reports = function (_React$Component) {
               _react2.default.createElement(
                 "th",
                 null,
-                "Name"
+                "Vitamin"
               ),
               _react2.default.createElement(
                 "th",
                 null,
-                "Genetic insights"
+                "Recommended?"
               )
             )
           ),
@@ -25737,7 +25737,7 @@ var Reports = function (_React$Component) {
                 _react2.default.createElement(
                   "td",
                   { key: "0" + el.phenotype },
-                  el.summary + " | " + el.score + "/4"
+                  el.score < 3 ? "Browse Supplements" : "Not recommended"
                 )
               );
             })
