@@ -15,9 +15,9 @@ const App = () => (
         <header>
         </header>
 
-        <ReportsContainer/>
         <Switch>
-
+          <Route exact path="/" component={ReportsContainer}/>
+          <Route exact path="/:vitamin" component={ProductIndexContainer}/>
         </Switch>
     </div>
 );

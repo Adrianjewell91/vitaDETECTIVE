@@ -2,11 +2,11 @@ import { connect } from 'react-redux';
 import ProductIndex from './product-index';
 import { requestProducts } from '../../actions/product_actions';
 
-const mapStateToProps = (state) => ({ 
-    products: state.products 
+const mapStateToProps = (state) => ({
+    products: state.products
 });
 
-const mapDispatchToProps = (dispatch) => ({ 
+const mapDispatchToProps = (dispatch) => ({
     requestProducts: (vitamin) => dispatch(requestProducts(vitamin))
 });
 

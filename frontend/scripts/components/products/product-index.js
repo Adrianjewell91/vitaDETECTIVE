@@ -7,7 +7,7 @@ class ProductIndex extends React.Component {
     }
 
     componentDidMount() {
-        const vitamin = 'Vitamin C';
+        const vitamin = this.props.match.url.slice(1);
         this.props.requestProducts(vitamin).then(res => this.setState({ Items: res.products.Items.Item }));
     }
 

@@ -1,0 +1,19 @@
+.reports-div {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.report-table, .reports-td, .reports-th {
+    border: 1px solid #ddd;
+    text-align: left;
+}
+
+.report-table {
+    border-collapse: collapse;
+    width: 100%;
+}
+
+.reports-th, .reports-td {
+    padding: 15px;
+}

@@ -5,6 +5,8 @@ const path = require('path')
 const vitamin_list = require('./vitamin_qualities.js');
 const aws = require('aws-lib');
 const bodyParser = require('body-parser');
+
+
 const VARIABLES = require('./env_variables.js');
 
 let reports = [];
@@ -32,7 +34,7 @@ app.get('/', async (req, res) => {
   // res.sendFile(path.join(__dirname, '/frontend/index.html'));
   // console.log(VARIABLES.GENOMELINK_CLIENT_ID);
   const authorizeUrl = await genomeLink.OAuth.authorizeUrl({scope: vitamin_list.join(' '), clientId: VARIABLES.GENOMELINK_CLIENT_ID, callbackUrl: VARIABLES.GENOMELINK_CALLBACK_URL});
-
+  console.log(authorizeUrl);
   res.render('index', {
     authorize_url: authorizeUrl,
   });
@@ -62,7 +64,6 @@ app.get('/single_page', async (req,res) => {
   }
 
   res.sendFile(path.join(__dirname, '/frontend/react_index.html'));
-
 });
 
 app.get('/report', (req,res) => {
@@ -70,21 +71,21 @@ app.get('/report', (req,res) => {
                                                         summary: el.summary.text,
                                                         score: el.summary.score}; });
 
-   const dummyData = [ {"phenotype":"Protein intake","score": 1, "summary":"Tend not to be a protein seeker"},
+   const dummyData = [ {"phenotype":"Protein intake","score": 4, "summary":"Tend not to be a protein seeker"},
 
    {"phenotype":"Vitamin A","score": 0,"summary":"Lower serum level"},
 
-   {"phenotype":"Vitamin B12","score": 1,"summary":"Slightly lower serum level"},
+   {"phenotype":"Vitamin B12","score": 4,"summary":"Slightly lower serum level"},
 
    {"phenotype":"Vitamin E","score": 2,"summary":"Intermediate"},
 
    {"phenotype":"Vitamin D","score": 2,"summary":"Intermediate"},
 
-   {"phenotype":"Response to vitamin E supplementation","score": 0,"summary":"Weak response"},
+   {"phenotype":"Response to vitamin E supplementation","score": 4,"summary":"Weak response"},
 
    {"phenotype":"Folate","score": 2,"summary":"Intermediate"},
 
-   {"phenotype":"Calcium","score": 2,"summary":"Intermediate"},
+   {"phenotype":"Calcium","score": 3,"summary":"Intermediate"},
 
    {"phenotype":"Iron","score": 2,"summary":"Intermediate"},
 
@@ -98,7 +99,7 @@ app.get('/report', (req,res) => {
 app.get('/aws', async (req,res) => {
 
   let prodAdv = aws.createProdAdvClient(VARIABLES.AWS_1, VARIABLES.AWS_2, VARIABLES.AWS_3);
-  
+
   let options = { SearchIndex: "HealthPersonalCare", Keywords: req.query.vitamin + " supplements", ResponseGroup: "Images, ItemAttributes" }
 
   prodAdv.call("ItemSearch", options, function(err, result) {
