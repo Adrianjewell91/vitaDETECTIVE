@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  </head>
+  <body>
+    <div class="container">
+      <div class="page-header">
+        <p class="lead">VITA-DETECTIVE: Supplement recommendations.</p>
+      </div>
+
+      <% if (authorize_url) { %>
+      <a href="<%= authorize_url %>" class="btn btn-default">Connect with genome</a>
+      <% } %>
+
+    </div>
+  </body>
+</html>
