@@ -1,5 +1,7 @@
 import React from 'react';
 
+import {Link} from 'react-router-dom';
+
 class Reports extends React.Component {
   constructor(props) {
     super(props);
@@ -21,8 +23,8 @@ class Reports extends React.Component {
         <table className="table">
         <thead>
           <tr>
-            <th>Name</th>
-            <th>Genetic insights</th>
+            <th>Vitamin</th>
+            <th>Recommended?</th>
           </tr>
         </thead>
         <tbody>
@@ -31,7 +33,7 @@ class Reports extends React.Component {
               return (
               <tr>
                 <th scope="row" key={el.phenotype}>{el.phenotype}</th>
-                <td key={`0${el.phenotype}`}>{`${el.summary} | ${el.score}/4`}</td>
+                <td key={`0${el.phenotype}`}>{el.score < 2 ? <Link to={`/${el.phenotype}`}>Browse Supplements</Link> : `Great News!, You May Not Need Supplements`}</td>
               </tr> )
             })
           }

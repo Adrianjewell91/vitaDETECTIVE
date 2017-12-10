@@ -72,11 +72,11 @@ app.get('/report', (req,res) => {
                                                         summary: el.summary.text,
                                                         score: el.summary.score}; });
 
-   const dummyData = [ {"phenotype":"Protein intake","score": 1, "summary":"Tend not to be a protein seeker"},
+   const dummyData = [ {"phenotype":"Protein intake","score": 4, "summary":"Tend not to be a protein seeker"},
 
    {"phenotype":"Vitamin A","score": 0,"summary":"Lower serum level"},
 
-   {"phenotype":"Vitamin B12","score": 1,"summary":"Slightly lower serum level"},
+   {"phenotype":"Vitamin B12","score": 4,"summary":"Slightly lower serum level"},
 
    {"phenotype":"Vitamin E","score": 2,"summary":"Intermediate"},
 
@@ -86,7 +86,7 @@ app.get('/report', (req,res) => {
 
    {"phenotype":"Folate","score": 2,"summary":"Intermediate"},
 
-   {"phenotype":"Calcium","score": 2,"summary":"Intermediate"},
+   {"phenotype":"Calcium","score": 3,"summary":"Intermediate"},
 
    {"phenotype":"Iron","score": 2,"summary":"Intermediate"},
 
@@ -102,7 +102,7 @@ app.get('/aws', async (req,res) => {
 
   let prodAdv = aws.createProdAdvClient(VARIABLES.AWS_1, VARIABLES.AWS_2, VARIABLES.AWS_3);
 
-  let options = { SearchIndex: "HealthPersonalCare", Keywords: req.query.query }
+  let options = { SearchIndex: "HealthPersonalCare", Keywords: req.query.vitamin + " supplements"}
 
   prodAdv.call("ItemSearch", options, function(err, result) {
       res.json(result);
