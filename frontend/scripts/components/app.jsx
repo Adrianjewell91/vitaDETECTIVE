@@ -7,14 +7,14 @@ import {
     HashRouter
 } from 'react-router-dom';
 
+import ReportsContainer from "./reports/reportsContainer";
+
 const App = () => (
     <div>
         <header>
-            <div>
-                'React is great'
-            </div>
         </header>
 
+        <ReportsContainer/>
         <Switch>
 
         </Switch>

@@ -9,3 +9,9 @@ export const getReports = () => {
 export const receiveReports = (reports) => {
   return {type: RECEIVE_REPORTS, reports};
 };
+
+//thunks
+export const requestReports = () => (dispatch) => {
+  return getReports()
+    .then((reports) => dispatch(receiveReports(reports)))
+};
