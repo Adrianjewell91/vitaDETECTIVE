@@ -14,7 +14,7 @@ function buildSelector(selector) {
 }
 
 function setAuthUrl(a,b,c) {
-  return genomeLink.OAuth.authorizeUrl({ scope: a,
+  return genomeLink.OAuth.authorizeUrl({ scope: a.join(' '),
                                          clientId: b,
                                          callbackUrl: c });
 };
@@ -30,9 +30,9 @@ window.addEventListener("DOMContentLoaded", () => {
   buildSelector(selector);
 
   let authorizeUrl = setAuthUrl(vitamin_list, GENOMELINK_CLIENT_ID, GENOMELINK_CALLBACK_URL);
+  console.log(vitamin_list);
 
   document.getElementById('auth-url').href = authorizeUrl;
-  console.log(authorizeUrl);
   selector.addEventListener("change", (e) => {
       e.preventDefault();
       // authorizeUrl = setAuthUrl(selector.value, GENOMELINK_CLIENT_ID, GENOMELINK_CALLBACK_URL);
