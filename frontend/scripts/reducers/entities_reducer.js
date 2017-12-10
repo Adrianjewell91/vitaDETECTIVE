@@ -1,5 +1,7 @@
 import { combineReducers } from 'redux';
 
-export default combineReducers({
+import {reportsReducer} from './reports_reducer';
 
+export default combineReducers({
+  reports: reportsReducer
 });

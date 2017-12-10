@@ -15,8 +15,6 @@ const App = () => (
             </div>
         </header>
 
-
-
         <Switch>
 
         </Switch>

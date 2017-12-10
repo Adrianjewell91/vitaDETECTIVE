@@ -15,6 +15,7 @@ document.addEventListener('DOMContentLoaded', () => {
   }
   const root = document.getElementById('root');
   // console.log('root')
+  window.store = store;
   ReactDOM.render(<Root store={store} />, root);
 });
 
@@ -61,5 +62,3 @@ document.addEventListener('DOMContentLoaded', () => {
 //   });
 
 // });
-
-
