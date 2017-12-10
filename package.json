@@ -6,6 +6,8 @@
     "node": "v8.2.1"
   },
   "dependencies": {
+    "amazon-product-api": "^0.4.4",
+    "aws-lib": "^0.3.0",
     "babel": "^6.23.0",
     "babel-core": "^6.26.0",
     "babel-loader": "^7.1.2",

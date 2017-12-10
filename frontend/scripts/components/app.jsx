@@ -6,12 +6,13 @@ import {
     Link,
     HashRouter
 } from 'react-router-dom';
+import ProductIndex from "./products/product-index";
 
 const App = () => (
     <div>
         <header>
             <div>
-                'React is great'
+                <ProductIndex/>
             </div>
         </header>
 

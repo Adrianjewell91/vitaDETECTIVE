@@ -3,6 +3,7 @@ const session = require('express-session');
 const genomeLink = require('genomelink-node');
 const path = require('path')
 const vitamin_list = require('./vitamin_qualities.js');
+const aws = require('aws-lib');
 let reports = [];
 // const GENOMELINK_CLIENT_ID='t0pRdHSsViMvhmFKGejrph0jvtyQFx760cz32qKB';
 // const GENOMELINK_CLIENT_SECRET='gi27X7FmYpqv0dkb5VJTsuBoNpOG7uBjDFxvdLg1uE3Aqj2UE9vKtWZI24bcJIdfrjFYRRu6AM5qV6OuWZ3HYSg33l08ONAPD6TnH2IxMoiA3IEm35Q2DdyMoxdsDlos';
@@ -52,7 +53,7 @@ app.get('/callback', async (req, res) => {
 });
 
 app.get('/single_page', async (req,res) => {
-  console.log(req.session);
+
   if (req.session.oauthToken) {
     const scopes = vitamin_list;
     reports = await Promise.all(scopes.map( async (name) => {
@@ -73,6 +74,20 @@ app.get('/report', (req,res) => {
                                                         score: el.summary.score}; });
   res.json(present_reports);
 })
+
+app.get('/aws', async (req,res) => {
+  
+  let prodAdv = aws.createProdAdvClient('AKIAIV5LBVLYWEEHDY6Q', 'AHU68vB//Ask3AgqyWWbPoagus5oBvFFTciRopnz', 'vitadetective-20');
+  
+  let options = { SearchIndex: "Books", Keywords: "Javascript" }
+          
+  prodAdv.call("ItemSearch", options, function(err, result) {
+      console.log(result);
+  });
+
+  res.sendFile(path.join(__dirname, '/frontend/react_index.html'));
+});
+
 
 // Run local server on port 3000.
 const port = process.env.PORT || 3000;
