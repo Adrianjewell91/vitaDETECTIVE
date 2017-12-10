@@ -39,7 +39,7 @@ app.get('/', async (req, res) => {
         population: 'european',
         token: req.session.oauthToken
       })
-    });
+    }));
   }
 
 
