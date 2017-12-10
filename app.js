@@ -7,8 +7,6 @@ const aws = require('aws-lib');
 const bodyParser = require('body-parser');
 const VARIABLES = require('./env_variables.js');
 
-const VARIABLES = require('./env_variables.js');
-
 let reports = [];
 
 const app = express();
@@ -32,11 +30,7 @@ app.use(session({
 
 app.get('/', async (req, res) => {
   // res.sendFile(path.join(__dirname, '/frontend/index.html'));
-<<<<<<< HEAD
-
-=======
   // console.log(VARIABLES.GENOMELINK_CLIENT_ID);
->>>>>>> b656b985fd642da69cec7967c7717fb2b7755986
   const authorizeUrl = await genomeLink.OAuth.authorizeUrl({scope: vitamin_list.join(' '), clientId: VARIABLES.GENOMELINK_CLIENT_ID, callbackUrl: VARIABLES.GENOMELINK_CALLBACK_URL});
 
   res.render('index', {
@@ -51,7 +45,6 @@ app.get('/callback', async (req, res) => {
 
   req.session.oauthToken = await genomeLink.OAuth.token({ requestUrl: req.url });
   // genomeLink.OAuth.token({ requestUrl: req.url }).then((res) => console.log(res));
-  console.log(req.session.oauthToken);
   res.redirect('/single_page');
 });
 
@@ -103,19 +96,11 @@ app.get('/report', (req,res) => {
 })
 
 app.get('/aws', async (req,res) => {
-<<<<<<< HEAD
-  
-  let prodAdv = aws.createProdAdvClient(VARIABLES.AWS_1, VARIABLES.AWS_2, VARIABLES.AWS_3);
-  
-  let options = { SearchIndex: "HealthPersonalCare", Keywords: req.body.data.vitamin }
-          
-=======
 
   let prodAdv = aws.createProdAdvClient(VARIABLES.AWS_1, VARIABLES.AWS_2, VARIABLES.AWS_3);
+  
+  let options = { SearchIndex: "HealthPersonalCare", Keywords: req.query.vitamin + "supplements" }
 
-  let options = { SearchIndex: "HealthPersonalCare", Keywords: req.query.query }
-
->>>>>>> b656b985fd642da69cec7967c7717fb2b7755986
   prodAdv.call("ItemSearch", options, function(err, result) {
       res.json(result);
   });

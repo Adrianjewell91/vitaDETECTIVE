@@ -6,7 +6,7 @@ import {
     Link,
     HashRouter
 } from 'react-router-dom';
-import ProductIndex from "./products/product-index";
+import ProductIndexContainer from "./products/product-index-container";
 
 import ReportsContainer from "./reports/reportsContainer";
 

@@ -12,7 +12,7 @@ export const getProducts = (vitamin) => {
 // action-creators
 
 export const receiveProducts = (products) => ({
-  type: RECIEVE_PRODUCTS,
+  type: RECEIVE_PRODUCTS,
   products
 })
 
