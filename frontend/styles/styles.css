@@ -28,6 +28,18 @@ thead {
   color: #666b85;
 }
 
+
+
+tr:nth-child(odd):hover *{
+  background: #4e5066;
+  color: white;
+}
+
+tr:nth-child(even):hover *{
+  background: #4e5066;
+  color: white;
+}
+
 .tr-report-body:nth-child(even) * {
   background-color: #ebebeb;
 }
