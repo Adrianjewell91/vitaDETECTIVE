@@ -25647,7 +25647,7 @@ var App = function App() {
         'div',
         null,
         _react2.default.createElement('header', null),
-        _react2.default.createElement(_reportsContainer2.default, null),
+        _react2.default.createElement(_productIndexContainer2.default, null),
         _react2.default.createElement(_reactRouterDom.Switch, null)
     );
 };
@@ -25722,27 +25722,60 @@ var ProductIndex = function (_React$Component) {
     function ProductIndex(props) {
         _classCallCheck(this, ProductIndex);
 
-        return _possibleConstructorReturn(this, (ProductIndex.__proto__ || Object.getPrototypeOf(ProductIndex)).call(this, props));
+        var _this = _possibleConstructorReturn(this, (ProductIndex.__proto__ || Object.getPrototypeOf(ProductIndex)).call(this, props));
+
+        _this.state = { Items: [] };
+        return _this;
     }
 
     _createClass(ProductIndex, [{
         key: 'componentDidMount',
         value: function componentDidMount() {
-            var vitamin = 'Vitamin A';
+            var _this2 = this;
+
+            var vitamin = 'Vitamin C';
             this.props.requestProducts(vitamin).then(function (res) {
-                return console.log(res);
+                return _this2.setState({ Items: res.products.Items.Item });
             });
         }
     }, {
         key: 'render',
         value: function render() {
+            console.log(this.state.Items);
             return _react2.default.createElement(
                 'div',
-                null,
+                { className: 'products-container' },
                 _react2.default.createElement(
-                    'h1',
-                    null,
-                    'I am the Product Index'
+                    'div',
+                    { className: 'products-inner-container' },
+                    Object.values(this.state.Items).map(function (item) {
+                        var URL = item.ImageSets.ImageSet;
+                        var imageURL = void 0;
+                        if (URL instanceof Array) {
+                            URL.forEach(function (imageSet) {
+                                if (imageSet['@'].Category === 'primary') {
+                                    imageURL = imageSet.MediumImage.URL;
+                                }
+                            });
+                        } else {
+                            imageURL = URL.MediumImage.URL;
+                        }
+                        return _react2.default.createElement(
+                            'div',
+                            { className: 'item-container', key: item.ASIN },
+                            _react2.default.createElement('img', { src: imageURL }),
+                            _react2.default.createElement(
+                                'h3',
+                                null,
+                                item.ItemAttributes.Brand
+                            ),
+                            _react2.default.createElement(
+                                'h3',
+                                null,
+                                item.ItemAttributes.Title
+                            )
+                        );
+                    })
                 )
             );
         }
