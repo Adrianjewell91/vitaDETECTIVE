@@ -17,3 +17,71 @@
 .reports-th, .reports-td {
     padding: 15px;
 }
+
+.products-container {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    border: 1px solid lightgray;
+    background: #e0e6e8;
+}
+
+.products-inner-container {
+    margin: auto;
+    width: 90%;
+}
+
+.item-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    border: 1px solid lightgray;
+    width: 220px;
+    height: 370px;
+    margin: 5px 5px 5px 5px;
+    padding-left: 10px;
+    padding-right: 10px;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    float: left;
+    background: white;
+    box-shadow: 0 1px 3px 0 rgba(0,0,0,0.15);
+}
+
+.brand, .product-title {
+    text-align: center;
+    margin: 5px;
+}
+
+.image-container {
+    align-self: center;
+}
+
+.amazon-link {
+    text-decoration: none;
+    border: 1px solid black;
+    text-align: center;
+    width: 150px;
+    line-height: 40px;
+    align-self: center;
+    color: white;
+    border-radius: 5px;
+    background: #F29D38;
+}
+
+.header-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 70px;
+}
+
+.header {
+    font-size: 35px;
+}
+
+@media (max-width: 800px) {
+    .header {
+        font-size: 20px;
+    }   
+}
