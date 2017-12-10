@@ -12,7 +12,6 @@ class ProductIndex extends React.Component {
     }
 
     render() {
-        console.log(this.state.Items);
         return (
             <div className="products-container">
                 <div className="products-inner-container">
