@@ -1,6 +1,6 @@
 module.exports = {
   context: __dirname,
-  entry: "./frontend/scripts/entry.js",
+  entry: "./frontend/scripts/entry.jsx",
     output: {
         path: __dirname,
         filename: "./frontend/bundle.js"
@@ -15,7 +15,7 @@ module.exports = {
             exclude: /(node_modules)/,
             loader: 'babel-loader',
             query: {
-              presets: ['es2015']
+              presets: ['react', 'es2015']
             }
           }
       ]
