@@ -78,8 +78,9 @@ app.get('/report', (req,res) => {
 
 app.get('/aws', async (req,res) => {
 
+  let prodAdv = aws.createProdAdvClient(
 
-  let options = { SearchIndex: "HealthPersonalCare", Keywords: "vitamin a" }
+  let options = { SearchIndex: "HealthPersonalCare", Keywords: req.query.query }
 
   prodAdv.call("ItemSearch", options, function(err, result) {
       res.json(result);
