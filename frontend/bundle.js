@@ -25712,6 +25712,8 @@ var _react = __webpack_require__(0);
 
 var _react2 = _interopRequireDefault(_react);
 
+var _reactRouterDom = __webpack_require__(20);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -25733,7 +25735,7 @@ var ProductIndex = function (_React$Component) {
     }
 
     _createClass(ProductIndex, [{
-        key: "componentDidMount",
+        key: 'componentDidMount',
         value: function componentDidMount() {
             var _this2 = this;
 
@@ -25743,26 +25745,35 @@ var ProductIndex = function (_React$Component) {
             });
         }
     }, {
-        key: "render",
+        key: 'render',
         value: function render() {
             return _react2.default.createElement(
-                "div",
-                { className: "top-level" },
+                'div',
+                { className: 'top-level' },
                 _react2.default.createElement(
-                    "div",
-                    { className: "header-container" },
+                    'div',
+                    { className: 'header-container' },
                     _react2.default.createElement(
-                        "h1",
-                        { className: "header" },
-                        "Vita-Detective Suggested Supplements"
+                        'h1',
+                        { className: 'header' },
+                        'Vita-Detective Suggested Supplements'
+                    ),
+                    _react2.default.createElement(
+                        'div',
+                        { className: 'link-container' },
+                        _react2.default.createElement(
+                            _reactRouterDom.Link,
+                            { className: 'report-link', to: "/" },
+                            'Vitamin Report'
+                        )
                     )
                 ),
                 _react2.default.createElement(
-                    "div",
-                    { className: "products-container" },
+                    'div',
+                    { className: 'products-container' },
                     _react2.default.createElement(
-                        "div",
-                        { className: "products-inner-container" },
+                        'div',
+                        { className: 'products-inner-container' },
                         Object.values(this.state.Items).map(function (item) {
                             var URL = item.ImageSets.ImageSet;
                             var imageURL = void 0;
@@ -25776,27 +25787,27 @@ var ProductIndex = function (_React$Component) {
                                 imageURL = URL.MediumImage.URL;
                             }
                             return _react2.default.createElement(
-                                "div",
-                                { className: "item-container", key: item.ASIN },
+                                'div',
+                                { className: 'item-container', key: item.ASIN },
                                 _react2.default.createElement(
-                                    "div",
-                                    { className: "image-container" },
-                                    _react2.default.createElement("img", { src: imageURL })
+                                    'div',
+                                    { className: 'image-container' },
+                                    _react2.default.createElement('img', { src: imageURL })
                                 ),
                                 _react2.default.createElement(
-                                    "h5",
-                                    { className: "brand" },
+                                    'h5',
+                                    { className: 'brand' },
                                     item.ItemAttributes.Brand
                                 ),
                                 _react2.default.createElement(
-                                    "h5",
-                                    { className: "product-title" },
+                                    'h5',
+                                    { className: 'product-title' },
                                     item.ItemAttributes.Title
                                 ),
                                 _react2.default.createElement(
-                                    "a",
-                                    { href: item.DetailPageURL, className: "amazon-link" },
-                                    "Shop on Amazon"
+                                    'a',
+                                    { href: item.DetailPageURL, className: 'amazon-link' },
+                                    'Shop on Amazon'
                                 )
                             );
                         })

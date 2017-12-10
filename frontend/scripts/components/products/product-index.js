@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 class ProductIndex extends React.Component {
     constructor(props) {
@@ -16,6 +17,9 @@ class ProductIndex extends React.Component {
             <div className="top-level">
                 <div className="header-container">
                     <h1 className="header">Vita-Detective Suggested Supplements</h1>
+                    <div className="link-container">
+                        <Link className="report-link" to={"/"}>Vitamin Report</Link>
+                    </div>
                 </div>
             <div className="products-container">
                 <div className="products-inner-container">
