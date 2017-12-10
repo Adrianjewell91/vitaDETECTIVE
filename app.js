@@ -4,6 +4,7 @@ const genomeLink = require('genomelink-node');
 const path = require('path')
 const vitamin_list = require('./vitamin_qualities.js');
 const aws = require('aws-lib');
+const bodyParser = require('body-parser');
 
 let reports = [];
 // const GENOMELINK_CLIENT_ID='t0pRdHSsViMvhmFKGejrph0jvtyQFx760cz32qKB';
@@ -17,6 +18,8 @@ app.set('views', __dirname + '/views');
 
 // Use the session middleware
 app.use(express.static('frontend'));
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: true }));
 
 app.use(session({
   secret: 'YOURSECRET',
@@ -82,7 +85,7 @@ app.get('/aws', async (req,res) => {
 
   let prodAdv = aws.createProdAdvClient('AKIAIV5LBVLYWEEHDY6Q', 'AHU68vB//Ask3AgqyWWbPoagus5oBvFFTciRopnz', 'vitadetective-20');
 
-  let options = { SearchIndex: "Books", Keywords: "Javascript" }
+  let options = { SearchIndex: "HealthPersonalCare", Keywords: "vitamin a" }
 
   prodAdv.call("ItemSearch", options, function(err, result) {
       res.json(result);

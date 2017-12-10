@@ -6,11 +6,14 @@
     "node": "v8.2.1"
   },
   "dependencies": {
+    "amazon-product-api": "^0.4.4",
+    "aws-lib": "^0.3.0",
     "babel": "^6.23.0",
     "babel-core": "^6.26.0",
     "babel-loader": "^7.1.2",
     "babel-preset-es2015": "^6.24.1",
     "babel-preset-react": "^6.24.1",
+    "body-parser": "^1.18.2",
     "ejs": "latest",
     "express": "latest",
     "express-session": "^1.15.6",

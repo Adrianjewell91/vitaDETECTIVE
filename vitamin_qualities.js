@@ -1,5 +1,4 @@
 const vitamin_list = ['report:protein-intake',
-                      'report:caffeine-metabolite-ratio',
                       'report:vitamin-a',
                       'report:vitamin-b12',
                       'report:vitamin-d',
