@@ -6,6 +6,8 @@ const vitamin_list = require('./vitamin_qualities.js');
 const aws = require('aws-lib');
 const bodyParser = require('body-parser');
 
+const VARIABLES = require('./env_variables.js');
+
 let reports = [];
 
 const app = express();
@@ -29,14 +31,12 @@ app.use(session({
 
 app.get('/', async (req, res) => {
   // res.sendFile(path.join(__dirname, '/frontend/index.html'));
-
-
-  const authorizeUrl = await genomeLink.OAuth.authorizeUrl({scope: vitamin_list.join(' '), clientId: GENOMELINK_CLIENT_ID, callbackUrl: GENOMELINK_CALLBACK_URL});
+  // console.log(VARIABLES.GENOMELINK_CLIENT_ID);
+  const authorizeUrl = await genomeLink.OAuth.authorizeUrl({scope: vitamin_list.join(' '), clientId: VARIABLES.GENOMELINK_CLIENT_ID, callbackUrl: VARIABLES.GENOMELINK_CALLBACK_URL});
 
   res.render('index', {
     authorize_url: authorizeUrl,
   });
-
 });
 
 app.get('/callback', async (req, res) => {
@@ -46,8 +46,7 @@ app.get('/callback', async (req, res) => {
 
   req.session.oauthToken = await genomeLink.OAuth.token({ requestUrl: req.url });
   // genomeLink.OAuth.token({ requestUrl: req.url }).then((res) => console.log(res));
-  // console.log(req.session.oauthToken);
-
+  console.log(req.session.oauthToken);
   res.redirect('/single_page');
 });
 
@@ -72,13 +71,36 @@ app.get('/report', (req,res) => {
   const present_reports = reports.map((el) => { return {phenotype: el.phenotype.display_name,
                                                         summary: el.summary.text,
                                                         score: el.summary.score}; });
-  res.json(present_reports);
+
+   const dummyData = [ {"phenotype":"Protein intake","score": 1, "summary":"Tend not to be a protein seeker"},
+
+   {"phenotype":"Vitamin A","score": 0,"summary":"Lower serum level"},
+
+   {"phenotype":"Vitamin B12","score": 1,"summary":"Slightly lower serum level"},
+
+   {"phenotype":"Vitamin E","score": 2,"summary":"Intermediate"},
+
+   {"phenotype":"Vitamin D","score": 2,"summary":"Intermediate"},
+
+   {"phenotype":"Response to vitamin E supplementation","score": 0,"summary":"Weak response"},
+
+   {"phenotype":"Folate","score": 2,"summary":"Intermediate"},
+
+   {"phenotype":"Calcium","score": 2,"summary":"Intermediate"},
+
+   {"phenotype":"Iron","score": 2,"summary":"Intermediate"},
+
+   {"phenotype":"Magnesium","score": 1,"summary":"Slightly lower serum level"},
+
+   {"phenotype":"Phosphorus","score": 3,"summary":"Slightly higher serum level"} ];
+
+  res.json(dummyData);
 })
 
 
 app.get('/aws', async (req,res) => {
 
-  let prodAdv = aws.createProdAdvClient(
+  let prodAdv = aws.createProdAdvClient(VARIABLES.AWS_1, VARIABLES.AWS_2, VARIABLES.AWS_3);
 
   let options = { SearchIndex: "HealthPersonalCare", Keywords: req.query.query }
 
