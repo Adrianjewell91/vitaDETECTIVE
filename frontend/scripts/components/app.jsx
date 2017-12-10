@@ -1,5 +1,4 @@
 import React from 'react';
-import Splash from './greeting/splash';
 import {
     Route,
     Redirect,
@@ -14,8 +13,7 @@ const App = () => (
     <div>
         <header>
         </header>
-        <Splash />
-        {/* <ReportsContainer/> */}
+        <ReportsContainer/>
         <Switch>
 
         </Switch>
