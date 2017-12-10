@@ -10,12 +10,14 @@ export const getProducts = (vitamin) => {
 }
 
 // action-creators
+
 export const receiveProducts = (products) => ({
   type: RECEIVE_PRODUCTS,
   products
 })
 
 //thunks
+
 export const requestProducts = (vitamin) => (dispatch) => {
   return getProducts(vitamin)
     .then((products) => dispatch(receiveProducts(products)))

@@ -45,8 +45,8 @@ app.get('/callback', async (req, res) => {
   // callback URL. With this redirection comes an authorization code included
   // in the request URL. We will use that to obtain an access token.
 
-  // req.session.oauthToken = await genomeLink.OAuth.token({ requestUrl: req.url });
-  genomeLink.OAuth.token({ requestUrl: req.url }).then((res) => console.log(res));
+  req.session.oauthToken = await genomeLink.OAuth.token({ requestUrl: req.url });
+  // genomeLink.OAuth.token({ requestUrl: req.url }).then((res) => console.log(res));
   res.redirect('/single_page');
 });
 
@@ -96,12 +96,11 @@ app.get('/report', (req,res) => {
   res.json(dummyData);
 })
 
-
 app.get('/aws', async (req,res) => {
 
   let prodAdv = aws.createProdAdvClient(VARIABLES.AWS_1, VARIABLES.AWS_2, VARIABLES.AWS_3);
 
-  let options = { SearchIndex: "HealthPersonalCare", Keywords: req.query.vitamin + " supplement"}
+  let options = { SearchIndex: "HealthPersonalCare", Keywords: req.query.vitamin + " supplements", ResponseGroup: "Images, ItemAttributes" }
 
   prodAdv.call("ItemSearch", options, function(err, result) {
       res.json(result);

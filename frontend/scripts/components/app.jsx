@@ -6,9 +6,9 @@ import {
     Link,
     HashRouter
 } from 'react-router-dom';
+import ProductIndexContainer from "./products/product-index-container";
 
 import ReportsContainer from "./reports/reportsContainer";
-import ProductIndexContainer from "./products/product-index-container";
 
 const App = () => (
     <div>
