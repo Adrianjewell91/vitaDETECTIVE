@@ -3,7 +3,7 @@ const session = require('express-session');
 const genomeLink = require('genomelink-node');
 const path = require('path')
 const vitamin_list = require('./vitamin_qualities.js');
-
+let reports = [];
 // const GENOMELINK_CLIENT_ID='t0pRdHSsViMvhmFKGejrph0jvtyQFx760cz32qKB';
 // const GENOMELINK_CLIENT_SECRET='gi27X7FmYpqv0dkb5VJTsuBoNpOG7uBjDFxvdLg1uE3Aqj2UE9vKtWZI24bcJIdfrjFYRRu6AM5qV6OuWZ3HYSg33l08ONAPD6TnH2IxMoiA3IEm35Q2DdyMoxdsDlos';
 // const GENOMELINK_CALLBACK_URL='https://vitadetective-api.herokuapp.com/callback';
@@ -52,8 +52,6 @@ app.get('/callback', async (req, res) => {
 
 app.get('/single_page', async (req,res) => {
 
-  let reports = [];
-
   if (req.session.oauthToken) {
     const scopes = vitamin_list;
     reports = await Promise.all(scopes.map( async (name) => {
@@ -65,9 +63,12 @@ app.get('/single_page', async (req,res) => {
     }));
   }
 
-  res.json(reports);
-
+  res.sendFile(path.join(__dirname, '/frontend/react_index.html'));
 });
+
+app.get('/report', (req,res) => {
+  res.json(reports);
+})
 
 // Run local server on port 3000.
 const port = process.env.PORT || 3000;
