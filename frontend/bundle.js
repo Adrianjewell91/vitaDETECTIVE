@@ -3396,6 +3396,8 @@ var _store = __webpack_require__(114);
 
 var _store2 = _interopRequireDefault(_store);
 
+var _report_actions = __webpack_require__(121);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 document.addEventListener('DOMContentLoaded', function () {
@@ -3410,6 +3412,8 @@ document.addEventListener('DOMContentLoaded', function () {
   var root = document.getElementById('root');
   // console.log('root')
   window.store = store;
+  window.getReports = _report_actions.getReports;
+  window.receiveReports = _report_actions.receiveReports;
   _reactDom2.default.render(_react2.default.createElement(_root2.default, { store: store }), root);
 });
 
@@ -25670,8 +25674,7 @@ var _errors_reducer2 = _interopRequireDefault(_errors_reducer);
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 var RootReducer = (0, _redux.combineReducers)({
-    entities: _entities_reducer2.default,
-    errors: _errors_reducer2.default
+    entities: _entities_reducer2.default
 });
 
 exports.default = RootReducer;
@@ -25738,7 +25741,7 @@ var reportsReducer = exports.reportsReducer = function reportsReducer() {
 
   switch (action.type) {
     case _report_actions.RECEIVE_REPORTS:
-      return actions.reports;
+      return action.reports;
     default:
       return state;
   }
