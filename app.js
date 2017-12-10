@@ -6,7 +6,7 @@ const vitamin_list = require('./vitamin_qualities.js');
 const aws = require('aws-lib');
 const bodyParser = require('body-parser');
 
-const VARIABLES = require('./env_variables.js');
+// const VARIABLES = require('./env_variables.js');
 
 let reports = [];
 
