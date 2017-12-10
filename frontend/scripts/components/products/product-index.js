@@ -5,6 +5,11 @@ class ProductIndex extends React.Component {
         super(props);
     }
 
+    componentDidMount() {
+        const vitamin = this.props.vitamin;
+        this.props.fetchProducts(vitamin).then(res => console.log(res))
+    }
+
     render() {
         return (
             <div>
