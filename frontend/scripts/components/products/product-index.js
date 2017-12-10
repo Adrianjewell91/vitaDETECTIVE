@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 class ProductIndex extends React.Component {
     constructor(props) {
@@ -12,8 +13,14 @@ class ProductIndex extends React.Component {
     }
 
     render() {
-        console.log(this.state.Items);
         return (
+            <div className="top-level">
+                <div className="header-container">
+                    <h1 className="header">Vita-Detective Suggested Supplements</h1>
+                    <div className="link-container">
+                        <Link className="report-link" to={"/"}>Vitamin Report</Link>
+                    </div>
+                </div>
             <div className="products-container">
                 <div className="products-inner-container">
                     { Object.values(this.state.Items).map((item) => {
@@ -29,13 +36,17 @@ class ProductIndex extends React.Component {
                             imageURL = URL.MediumImage.URL;
                         }
                         return <div className="item-container" key={item.ASIN}>
-                                    <img src={ imageURL }></img>
-                                    <h3>{ item.ItemAttributes.Brand }</h3>
-                                    <h3>{ item.ItemAttributes.Title}</h3>
+                                    <div className="image-container">
+                                        <img src={ imageURL }></img>
+                                    </div>
+                                    <h5 className="brand">{ item.ItemAttributes.Brand }</h5>
+                                    <h5 className="product-title">{ item.ItemAttributes.Title}</h5>
+                                    <a href={item.DetailPageURL} className="amazon-link">Shop on Amazon</a>
                                 </div>
                       })
                     }
                 </div>
+            </div>
             </div>
         );
     }
