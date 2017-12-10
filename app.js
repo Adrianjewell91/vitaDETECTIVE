@@ -44,14 +44,14 @@ app.get('/callback', async (req, res) => {
   // callback URL. With this redirection comes an authorization code included
   // in the request URL. We will use that to obtain an access token.
 
-  req.session.oauthToken = await genomeLink.OAuth.token({ requestUrl: req.url })
+  req.session.oauthToken = await genomeLink.OAuth.token({ requestUrl: req.url });
 
 
   res.redirect('/single_page');
 });
 
 app.get('/single_page', async (req,res) => {
-
+  console.log(req.session);
   if (req.session.oauthToken) {
     const scopes = vitamin_list;
     reports = await Promise.all(scopes.map( async (name) => {
@@ -67,7 +67,9 @@ app.get('/single_page', async (req,res) => {
 });
 
 app.get('/report', (req,res) => {
-  res.json(reports);
+  const present_reports = reports.map((el) => { return {Phenotype: el.phenotype,
+                                                        Summary: el.summary}; });
+  res.json(present_reports);
 })
 
 // Run local server on port 3000.
