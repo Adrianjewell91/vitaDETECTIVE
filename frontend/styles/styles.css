@@ -126,8 +126,11 @@ tr:nth-child(even):hover *{
     font-size: 35px;
 }
 
-.report-link {
+.link-container {
     margin-left: 100px;
+}
+
+.report-link {
     text-decoration: none;
     border: 1px solid black;
     text-align: center;
@@ -140,9 +143,23 @@ tr:nth-child(even):hover *{
     background: white;
 }
 
+
+
 @media (max-width: 700px) {
     .header {
         font-size: 20px;
+    }
+
+    .link-container {
+        margin-left: 0px;
+    }
+
+    .header-container {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+        height: 130px;
     }
 
     .products-inner-container {
