@@ -45,7 +45,8 @@ app.get('/callback', async (req, res) => {
   // in the request URL. We will use that to obtain an access token.
 
   req.session.oauthToken = await genomeLink.OAuth.token({ requestUrl: req.url });
-
+  // genomeLink.OAuth.token({ requestUrl: req.url }).then((res) => console.log(res));
+  // console.log(req.session.oauthToken);
 
   res.redirect('/single_page');
 });
@@ -67,8 +68,9 @@ app.get('/single_page', async (req,res) => {
 });
 
 app.get('/report', (req,res) => {
-  const present_reports = reports.map((el) => { return {Phenotype: el.phenotype,
-                                                        Summary: el.summary}; });
+  const present_reports = reports.map((el) => { return {phenotype: el.phenotype.display_name,
+                                                        summary: el.summary.text,
+                                                        score: el.summary.score}; });
   res.json(present_reports);
 })
 
