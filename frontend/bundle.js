@@ -25722,12 +25722,12 @@ var Reports = function (_React$Component) {
               null,
               _react2.default.createElement(
                 'th',
-                { className: 'reports-th' },
+                { className: 'reports-th head' },
                 'Vitamin'
               ),
               _react2.default.createElement(
                 'th',
-                { className: 'reports-th' },
+                { className: 'reports-th head' },
                 'Recommended?'
               )
             )
@@ -25738,15 +25738,15 @@ var Reports = function (_React$Component) {
             reports.map(function (el) {
               return _react2.default.createElement(
                 'tr',
-                null,
+                { className: 'tr-report-body' },
                 _react2.default.createElement(
                   'th',
-                  { className: 'reports-th', scope: 'row', key: el.phenotype },
+                  { className: 'reports-th row', scope: 'row', key: el.phenotype },
                   el.phenotype
                 ),
                 _react2.default.createElement(
                   'td',
-                  { className: 'reports-td', key: '0' + el.phenotype },
+                  { className: 'reports-td row', scope: 'row', key: '0' + el.phenotype },
                   el.score < 3 ? _react2.default.createElement(
                     _reactRouterDom.Link,
                     { to: '/' + el.phenotype },

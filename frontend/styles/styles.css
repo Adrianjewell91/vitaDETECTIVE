@@ -1,8 +1,36 @@
+body {
+  background-color: #3e94ec;
+  font-family: "Roboto", helvetica;
+}
+
 .reports-div {
   display: flex;
   flex-direction: column;
   align-items: center;
 }
+
+.your-report-header {
+  color: #ffffff;
+}
+
+.head {
+  background: #1b1e24;
+  color: #d5dde5;
+}
+
+.row {
+  color: #666b85;
+}
+
+.tr-report-body:nth-child(even) * {
+  background-color: #ebebeb;
+}
+
+.tr-report-body:nth-child(odd) * {
+  background-color: #ffffff;
+}
+
+
 
 .report-table, .reports-td, .reports-th {
     border: 1px solid #ddd;

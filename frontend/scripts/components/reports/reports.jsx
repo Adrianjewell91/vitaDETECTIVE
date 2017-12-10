@@ -23,17 +23,17 @@ class Reports extends React.Component {
         <table className="report-table">
         <thead>
           <tr>
-            <th className="reports-th">Vitamin</th>
-            <th className="reports-th">Recommended?</th>
+            <th className="reports-th head">Vitamin</th>
+            <th className="reports-th head">Recommended?</th>
           </tr>
         </thead>
         <tbody>
           {
             reports.map((el) => {
               return (
-              <tr>
-                <th className="reports-th" scope="row" key={el.phenotype}>{el.phenotype}</th>
-                <td className="reports-td" key={`0${el.phenotype}`}>{el.score < 3 ? <Link to={`/${el.phenotype}`}>Browse Supplements</Link> : `Great News! You May Not Need Supplements`}</td>
+              <tr className='tr-report-body'>
+                <th className="reports-th row" scope="row" key={el.phenotype}>{el.phenotype}</th>
+                <td className="reports-td row" scope="row" key={`0${el.phenotype}`}>{el.score < 3 ? <Link to={`/${el.phenotype}`}>Browse Supplements</Link> : `Great News! You May Not Need Supplements`}</td>
               </tr> )
             })
           }

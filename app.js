@@ -47,11 +47,14 @@ app.get('/callback', async (req, res) => {
 
   req.session.oauthToken = await genomeLink.OAuth.token({ requestUrl: req.url });
   // genomeLink.OAuth.token({ requestUrl: req.url }).then((res) => console.log(res));
+  console.log(req.session.oauthToken);
+
   res.redirect('/single_page');
 });
 
 app.get('/single_page', async (req,res) => {
 
+  console.log(req.session.oauthToken);
   if (req.session.oauthToken) {
     const scopes = vitamin_list;
     reports = await Promise.all(scopes.map( async (name) => {
@@ -76,8 +79,6 @@ app.get('/report', (req,res) => {
    {"phenotype":"Vitamin A","score": 0,"summary":"Lower serum level"},
 
    {"phenotype":"Vitamin B12","score": 4,"summary":"Slightly lower serum level"},
-
-   {"phenotype":"Vitamin E","score": 2,"summary":"Intermediate"},
 
    {"phenotype":"Vitamin D","score": 2,"summary":"Intermediate"},
 
