@@ -1,4 +1,6 @@
-## `express`
+# Vitadetective 
+
+VitaDetective offers custom vitamin recommendations using genome data from the GENOMELINK API, and the Amazon products API. 
 
 ## How to run
 
